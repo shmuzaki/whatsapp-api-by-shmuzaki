@@ -1,4 +1,4 @@
-node_modules
-whatsapp-session*.json
-package-lock.json
-downloaded-media/
+/node_modules
+npm-debug.log
+.DS_Store
+/*.env
