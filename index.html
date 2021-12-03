@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>WA API</title>
+	<title>Whatsapp API by Ngekoding</title>
 </head>
 <body>
+
 	<div id="app">
-		<h1>WA API</h1>
-		<p>Powered by PTIP</p>
+		<h1>Whatsapp API</h1>
+		<p>Powered by Ngekoding</p>
 		<img src="" alt="QR Code" id="qrcode">
 		<h3>Logs:</h3>
 		<ul class="logs"></ul>
 	</div>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.min.js" integrity="sha512-fB746S+jyTdN2LSWbYSGP2amFYId226wpOeV4ApumcDpIttPxvk1ZPOgnwqwQziRAtZkiFJVx9F64GLAtoIlCQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script type="text/javascript">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" crossorigin="anonymous"></script>
+	<script>
 		$(document).ready(function() {
 			var socket = io();
-			
+
 			socket.on('message', function(msg) {
 				$('.logs').append($('<li>').text(msg));
 			});
 
 			socket.on('qr', function(src) {
 				$('#qrcode').attr('src', src);
+				$('#qrcode').show();
 			});
 
-			socket.on('ready', function(src) {
+			socket.on('ready', function(data) {
 				$('#qrcode').hide();
 			});
 
-			socket.on('authenticated', function(src) {
+			socket.on('authenticated', function(data) {
 				$('#qrcode').hide();
 			});
 		});
